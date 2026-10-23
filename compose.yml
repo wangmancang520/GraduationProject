@@ -1,0 +1,15 @@
+# Local demo only: H2 data resets whenever the backend process restarts.
+services:
+  backend:
+    build: .
+    environment:
+      SPRING_PROFILES_ACTIVE: demo
+      FILE_PUBLIC_URL: /api/file
+    ports:
+      - "127.0.0.1:8081:8081"
+  web:
+    build: ../GraduationProjectWeb
+    ports:
+      - "127.0.0.1:8080:80"
+    depends_on:
+      - backend
